@@ -9,13 +9,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.uoa.compsci_702_g12.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <ImageView
+        android:id="@+id/test_pic_view"
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
 
     <Button
-        android:text="Button"
+        android:text="Photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -24,7 +24,7 @@
         android:id="@+id/camera_btn" />
 
     <Button
-        android:text="Button"
+        android:text="Gallery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

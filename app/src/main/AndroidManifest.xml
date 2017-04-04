@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.uoa.compsci_702_g12">
 
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TextActivity"></activity>
+        <activity android:name=".VolunteerViewActivity" />
+        <activity android:name=".RegisterBuddyActivity" />
     </application>
 
 </manifest>

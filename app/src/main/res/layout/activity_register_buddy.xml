@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register_buddy"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.uoa.compsci_702_g12.RegisterBuddyActivity">
+
+    <TextView
+        android:text="Please fill in your details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dip"
+        android:layout_gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="First Name: "
+            android:layout_width="@dimen/form_input_textfield_width"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/input_fname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="e.g. Steve "
+            android:maxLength="25"
+            android:maxLines="1"
+            android:textSize="@dimen/form_input_text_size"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Last Name: "
+            android:layout_width="@dimen/form_input_textfield_width"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/input_lname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:hint="e.g. Jobs "
+            android:textSize="@dimen/form_input_text_size"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Gender: "
+            android:layout_width="@dimen/form_input_textfield_width"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/input_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/gender_spinner"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Email: "
+            android:layout_width="@dimen/form_input_textfield_width"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/input_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="e.g. sjob123@aucklanduni.ac.nz "
+            android:maxLength="25"
+            android:maxLines="1"
+            android:textSize="@dimen/form_input_text_size"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Phone number: "
+            android:layout_width="@dimen/form_input_textfield_width"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/input_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:inputType="phone"
+            android:hint="e.g. 021 1234567 "
+            android:textSize="@dimen/form_input_text_size"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Ethnicity: "
+            android:layout_width="@dimen/form_input_textfield_width"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/input_ethnicity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:hint="e.g. European "
+            android:textSize="@dimen/form_input_text_size"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Lanuages spoken: "
+            android:layout_width="@dimen/form_input_textfield_width"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/input_languages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:hint="e.g. English, spanish "
+            android:textSize="@dimen/form_input_text_size"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Additional details: "
+            android:layout_width="@dimen/form_input_textfield_width"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/input_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="75"
+            android:lines="2"
+            android:maxLines="3"
+            android:hint="e.g. English, spanish "
+            android:textSize="@dimen/form_input_text_size"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Graduation status: "
+            android:layout_width="@dimen/form_input_textfield_width"
+            android:layout_height="wrap_content" />
+
+        <CheckBox
+            android:id="@+id/input_grad_status"
+            android:text="Postgraduate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/register_button"
+        android:text="Register as Buddy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

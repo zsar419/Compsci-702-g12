@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Compsci-702-g12</string>
+
+    <!-- Options to register in -->
+    <string name="international_option">International Students Assistance</string>
+    <string name="research_option">Research Assistance</string>
+    <string name="tutor_option">Tutoring</string>
+    <string name="view_buddies">Buddies</string>
+
+    <!-- Registration button labels -->
+    <string name="register_volunteer">Register as Volunteer</string>
+    <string name="register_newbie">Register as Newbie</string>
+    <string-array name="gender_spinner">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
 </resources>

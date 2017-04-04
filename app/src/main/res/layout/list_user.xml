@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/gender_indicator"
+            android:layout_width="@dimen/list_image_size"
+            android:layout_height="@dimen/list_image_size"
+            android:src="@drawable/ic_person_black_24dp"/>
+
+        <TextView
+            android:id="@+id/username_label"
+            android:text="name "
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:textSize="30px"
+            android:layout_alignBottom="@+id/grad_indicator"
+            android:layout_toRightOf="@+id/gender_indicator"
+            android:layout_toEndOf="@+id/gender_indicator" />
+
+        <ImageView
+            android:id="@+id/grad_indicator"
+            android:layout_width="@dimen/list_image_size_small"
+            android:layout_height="@dimen/list_image_size_small"
+            android:src="@drawable/ic_school_black_24dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="@color/greyColor"/>
+
+</LinearLayout>

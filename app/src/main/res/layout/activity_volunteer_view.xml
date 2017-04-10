@@ -17,7 +17,7 @@
         android:layout_width="match_parent" />
 
     <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/menu"
+        android:id="@+id/floating_action_menu"
         fab:menu_icon="@drawable/fab_add"
         fab:menu_colorNormal="@color/colorAccent"
         fab:menu_colorPressed="@color/colorAccentLight"
@@ -31,7 +31,7 @@
             android:id="@+id/register_volunteer_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back_white_24dp"
+            android:src="@drawable/ic_person_white_24dp"
             fab:fab_size="mini"
             fab:fab_colorNormal="@color/colorAccent"
             fab:fab_colorPressed="@color/colorAccentLight"
@@ -41,12 +41,22 @@
             android:id="@+id/register_newbie_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back_white_24dp"
+            android:src="@drawable/ic_person_white_24dp"
             fab:fab_size="mini"
             fab:fab_colorNormal="@color/colorAccent"
             fab:fab_colorPressed="@color/colorAccentLight"
             fab:fab_label="@string/register_newbie" />
 
     </com.github.clans.fab.FloatingActionMenu>
+
+    <ProgressBar
+        android:id="@+id/progress_bar_volunteer_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:indeterminate="true"
+        style="?android:attr/progressBarStyle" />
 
 </RelativeLayout>

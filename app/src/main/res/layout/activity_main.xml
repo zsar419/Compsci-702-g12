@@ -20,6 +20,7 @@
         android:id="@+id/research_btn"
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_option_height"
+        android:enabled="false"
         android:layout_below="@id/international_students_btn" />
 
     <Button
@@ -27,14 +28,23 @@
         android:id="@+id/tutoring_btn"
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_option_height"
+        android:enabled="false"
         android:layout_below="@+id/research_btn" />
 
     <Button
-        android:text="@string/view_buddies"
-        android:id="@+id/show_buddies_btn"
-        android:layout_width="match_parent"
+        android:text="@string/view_newbies"
+        android:id="@+id/show_newbies_btn"
+        android:layout_width="@dimen/button_buddy_width"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:text="@string/view_volunteers"
+        android:id="@+id/show_volunteers_btn"
+        android:layout_width="@dimen/button_buddy_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:visibility="gone"/>
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

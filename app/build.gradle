@@ -26,4 +26,10 @@ dependencies {
 
     // Floating action menu and button
     compile 'com.github.clans:fab:1.6.4'
+
+    // Retrofit - used for rest api consumption
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    // debugging - logging for server requests
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
 }

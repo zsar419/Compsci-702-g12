@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="First Name: "
+            android:text="@string/first_name"
             android:layout_width="@dimen/form_input_textfield_width"
             android:layout_height="wrap_content" />
         <EditText
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="Last Name: "
+            android:text="@string/last_name"
             android:layout_width="@dimen/form_input_textfield_width"
             android:layout_height="wrap_content" />
 
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:text="Gender: "
+            android:text="@string/gender"
             android:layout_width="@dimen/form_input_textfield_width"
             android:layout_height="wrap_content" />
 
@@ -77,7 +77,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="Email: "
+            android:text="@string/email"
             android:layout_width="@dimen/form_input_textfield_width"
             android:layout_height="wrap_content" />
 
@@ -96,7 +96,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="Phone number: "
+            android:text="@string/phone"
             android:layout_width="@dimen/form_input_textfield_width"
             android:layout_height="wrap_content" />
 
@@ -115,7 +115,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="Ethnicity: "
+            android:text="@string/ethnicity"
             android:layout_width="@dimen/form_input_textfield_width"
             android:layout_height="wrap_content" />
 
@@ -134,7 +134,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="Lanuages spoken: "
+            android:text="@string/languages"
             android:layout_width="@dimen/form_input_textfield_width"
             android:layout_height="wrap_content" />
         <EditText
@@ -151,7 +151,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="Additional details: "
+            android:text="@string/details"
             android:layout_width="@dimen/form_input_textfield_width"
             android:layout_height="wrap_content" />
         <EditText
@@ -160,8 +160,8 @@
             android:layout_height="wrap_content"
             android:maxLength="75"
             android:lines="2"
-            android:maxLines="3"
-            android:hint="e.g. English, spanish "
+            android:maxLines="5"
+            android:hint="e.g. Masters student studying IT, interests in AI and Machine learning"
             android:textSize="@dimen/form_input_text_size"/>
     </LinearLayout>
 
@@ -169,7 +169,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
-            android:text="Graduation status: "
+            android:text="@string/grad_status"
             android:layout_width="@dimen/form_input_textfield_width"
             android:layout_height="wrap_content" />
 
@@ -186,5 +186,14 @@
         android:text="Register as Buddy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:indeterminate="true"
+        style="?android:attr/progressBarStyle" />
 
 </LinearLayout>

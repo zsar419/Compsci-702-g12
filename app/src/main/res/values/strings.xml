@@ -3,9 +3,11 @@
 
     <!-- Options to register in -->
     <string name="international_option">International Students Assistance</string>
-    <string name="research_option">Research Assistance</string>
-    <string name="tutor_option">Tutoring</string>
-    <string name="view_buddies">Buddies</string>
+    <string name="research_option">Research Assistance (Coming soon)</string>
+    <string name="tutor_option">Tutoring (Coming soon)</string>
+    <string name="view_volunteers">Your Volunteers</string>
+    <string name="view_newbies">Your Newbies</string>
+
 
     <!-- Registration button labels -->
     <string name="register_volunteer">Register as Volunteer</string>
@@ -14,5 +16,21 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+    <string name="first_name">First Name:</string>
+    <string name="last_name">Last Name:</string>
+    <string name="gender">Gender:</string>
+    <string name="email">Email:</string>
+    <string name="phone">Phone Number:</string>
+    <string name="ethnicity">Ethnicity</string>
+    <string name="languages">Languages:</string>
+    <string name="details">Additional details:</string>
+    <string name="grad_status">Graduation status:</string>
+
+    <!-- Dialog -->
+    <string name="remove_user_dialog">Do you wish to remove buddy from list?</string>
+    <string name="register_dialog">To select a buddy you must first register as newbie</string>
+    <string name="volunteer_selection_dialog">Would you like to buddy with this volunteer?</string>
+
 
 </resources>

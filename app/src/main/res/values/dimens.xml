@@ -4,11 +4,15 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="button_option_height">150dip</dimen>
+    <dimen name="button_buddy_width">175dip</dimen>
+
 
     <dimen name="form_input_textfield_width">150dip</dimen>
     <dimen name="form_input_text_size">12dip</dimen>
 
     <dimen name="list_image_size">75dip</dimen>
     <dimen name="list_image_size_small">35dip</dimen>
+    <dimen name="list_text_size">12dip</dimen>
+
 
 </resources>

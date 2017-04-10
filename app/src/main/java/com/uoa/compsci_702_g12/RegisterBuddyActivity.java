@@ -1,6 +1,10 @@
 package com.uoa.compsci_702_g12;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.annotation.BoolRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,33 +13,41 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import com.uoa.compsci_702_g12.models.User;
+import com.uoa.compsci_702_g12.utilities.AppDataManager;
 import com.uoa.compsci_702_g12.utilities.Constants;
+import com.uoa.compsci_702_g12.utilities.RESTfulService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterBuddyActivity extends AppCompatActivity {
 
-    EditText firstName, lastName, email, phoneNumber, ethnicity, languages, details;
-    Spinner gender;
-    CheckBox gradStatus;
-    Button register;
+    private int selectedCategory, registrationType;
+    private Activity activity;
+    private ProgressBar progressBar;
+    private EditText firstName, lastName, email, phoneNumber, ethnicity, languages, details;
+    private Spinner gender;
+    private CheckBox gradStatus;
+    private Button register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_buddy);
+        activity = this;
 
-        // Need to also get which option user is registering for
-
-        final int selectedOption = getIntent().getExtras().getInt(Constants.OPTION_SELECTION);
-        final int registrationType = getIntent().getExtras().getInt(Constants.BUDDY_REGISTRATION);
+        selectedCategory = getIntent().getExtras().getInt(Constants.CATEGORY_SELECTION);
+        registrationType = getIntent().getExtras().getInt(Constants.BUDDY_REGISTRATION);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Constants.getTitle(this, registrationType));
+
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar_register);
+
 
         // Initialize all input vars
         firstName = (EditText) findViewById(R.id.input_fname);
@@ -61,7 +73,7 @@ public class RegisterBuddyActivity extends AppCompatActivity {
         register = (Button) findViewById(R.id.register_button);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { validateFields(selectedOption, registrationType, required); }
+            public void onClick(View v) { validateFields(selectedCategory, registrationType, required); }
         });
     }
 
@@ -76,7 +88,7 @@ public class RegisterBuddyActivity extends AppCompatActivity {
         if(!valid) return;
 
         User user = new User(selectedOption, registrationType, firstName.getText().toString(),
-                lastName.getText().toString(), gender.getSelectedItemPosition(),
+                lastName.getText().toString(), gender.getSelectedItemPosition()+1,
                 email.getText().toString(), phoneNumber.getText().toString(),
                 ethnicity.getText().toString(), languages.getText().toString(),
                 details.getText().toString(), gradStatus.isChecked()?1:0);
@@ -84,20 +96,26 @@ public class RegisterBuddyActivity extends AppCompatActivity {
         new RegisterUser().execute(user);
     }
 
-    private class RegisterUser extends AsyncTask<User, Void, Void> {
+    private class RegisterUser extends AsyncTask<User, Void, Integer> {
         protected void onPreExecute() {
             register.setEnabled(false);
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
-        protected Void doInBackground(User... params) {
-            // register user using a post request
-            return null;
+        protected Integer doInBackground(User... params) {
+            return RESTfulService.getInstance().createUser(params[0]);
         }
 
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(Integer returnedId) {
             register.setEnabled(true);
-            // End activity with a callback that refreshes previous page if successful
+            progressBar.setVisibility(View.GONE);
+            if(returnedId != 0) {
+                AppDataManager.getInstance(activity).saveUserId(returnedId);
+                AppDataManager.getInstance(activity).saveRegisteredBuddyForCategory(selectedCategory, registrationType);
+                activity.setResult(RESULT_OK);
+                finish();
+            }
         }
     }
 

@@ -8,19 +8,28 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.uoa.compsci_702_g12.models.User;
+import com.uoa.compsci_702_g12.utilities.AppDataManager;
 import com.uoa.compsci_702_g12.utilities.Constants;
+import com.uoa.compsci_702_g12.utilities.RESTfulService;
 import com.uoa.compsci_702_g12.utilities.UsersAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static com.uoa.compsci_702_g12.utilities.Constants.REFRESH_VIEW;
 
 public class VolunteerViewActivity extends AppCompatActivity {
 
-    Context context;
-    ListView listView;
+    private int selectedCategory;
+    private int userId;
+    private Context context;
+    private ListView listView;
+    private ProgressBar progressBar;
+    private Constants.REGISTRATION_STATUS status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +37,26 @@ public class VolunteerViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_volunteer_view);
         context = this;
 
-        int selectedOption = getIntent().getExtras().getInt(Constants.OPTION_SELECTION);
+        selectedCategory = getIntent().getExtras().getInt(Constants.CATEGORY_SELECTION);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(Constants.getTitle(this, selectedOption));
+        getSupportActionBar().setTitle(Constants.getTitle(this, selectedCategory));
+
         listView = (ListView) findViewById(R.id.option_volunteer_list);
 
         FloatingActionButton registerVolunteer = (FloatingActionButton) findViewById(R.id.register_volunteer_btn);
-        registerVolunteer.setOnClickListener(register(Constants.REGISTER_VOLUNTEER, selectedOption));
+        registerVolunteer.setOnClickListener(register(Constants.REGISTER_VOLUNTEER, selectedCategory));
 
         FloatingActionButton registerNewbie = (FloatingActionButton) findViewById(R.id.register_newbie_btn);
-        registerNewbie.setOnClickListener(register(Constants.REGISTER_NEWBIE, selectedOption));
+        registerNewbie.setOnClickListener(register(Constants.REGISTER_NEWBIE, selectedCategory));
 
-        // Load view of volunteers which have registered for that option type
-        new LoadVolunteers().execute();
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar_volunteer_view);
+
+        status = AppDataManager.getInstance(this).getStatus(selectedCategory);
+
+        userId = AppDataManager.getInstance(this).getUserId();
+
+        loadVolunteers(status != Constants.REGISTRATION_STATUS.NONE);
     }
 
     private View.OnClickListener register(final int registrationType, final int selectedOption) {
@@ -49,29 +64,41 @@ public class VolunteerViewActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, RegisterBuddyActivity.class);
                 intent.putExtra(Constants.BUDDY_REGISTRATION, registrationType);
-                intent.putExtra(Constants.OPTION_SELECTION, selectedOption);
-                startActivity(intent);
+                intent.putExtra(Constants.CATEGORY_SELECTION, selectedOption);
+                startActivityForResult(intent, REFRESH_VIEW);
             }
         };
     }
 
-    private class LoadVolunteers extends AsyncTask<Void, Void, List<User>> {
-        protected void onPreExecute() {
-            // Set refreshing state
+    private void loadVolunteers(boolean userIsRegistered) {
+        if(userIsRegistered) {
+            FloatingActionMenu floatingActionMenu = (FloatingActionMenu) findViewById(R.id.floating_action_menu);
+            floatingActionMenu.setVisibility(View.INVISIBLE);
         }
+        new LoadVolunteers().execute();
+    }
+
+    private class LoadVolunteers extends AsyncTask<Void, Void, List<User>> {
+        protected void onPreExecute() { progressBar.setVisibility(View.VISIBLE); }
 
         @Override
         protected List<User> doInBackground(Void... params) {
-            // Get users from internet - this is dummy user
-            List<User> retUsers = new ArrayList<>();
-            User test = new User(1,1,"f","l",0,"a", "b","c","d","e",1);
-            retUsers.add(test);
-            return retUsers;
+            return RESTfulService.getInstance().getVolunteersForCategory(selectedCategory);
         }
 
         protected void onPostExecute(List<User> users) {
-            listView.setAdapter(new UsersAdapter(context, users));
-            // Stop refreshing state
+            listView.setAdapter(new UsersAdapter(context, userId, users, status, false));
+            progressBar.setVisibility(View.GONE);
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            status = AppDataManager.getInstance(this).getStatus(selectedCategory);
+            userId = AppDataManager.getInstance(this).getUserId();
+            loadVolunteers(true);
         }
     }
 
@@ -84,5 +111,11 @@ public class VolunteerViewActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_OK);
+        finish();
     }
 }
